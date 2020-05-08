@@ -1,0 +1,920 @@
+<!---->
+<!--<>-->
+<html>
+<head>
+  <title>CAOS VR | Escape Room</title>
+   <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+   <script src="https://rawgit.com/rdub80/aframe-gui/master/dist/aframe-gui.min.js"></script>
+   <meta name="apple-mobile-web-app-capable" content="yes">
+   <meta charset="utf-8" />
+</head>
+<body>
+    <a-scene>
+        <a-assets>
+        <!--IMMAGINI-->
+            <a-img id="teleport" src="img/passi1/steps.png"></a-img>
+            <!--PUZZLE-->
+            <a-img id="puzzle11" src="img/stellata_puzzle/stellata11/row-1-col-1.png"></a-img>
+            <a-img id="puzzle12" src="img/stellata_puzzle/stellata12/row-1-col-2.png"></a-img>
+            <a-img id="puzzle13" src="img/stellata_puzzle/stellata13/row-1-col-3.png"></a-img>
+            <a-img id="puzzle14" src="img/stellata_puzzle/stellata14/row-1-col-4.png"></a-img>
+            <a-img id="puzzle15" src="img/stellata_puzzle/stellata15/row-1-col-5.png"></a-img>
+            <a-img id="puzzle21" src="img/stellata_puzzle/stellata21/row-2-col-1.png"></a-img>
+            <a-img id="puzzle22" src="img/stellata_puzzle/stellata22/row-2-col-2.png"></a-img>
+            <a-img id="puzzle23" src="img/stellata_puzzle/stellata23/row-2-col-3.png"></a-img>
+            <a-img id="puzzle24" src="img/stellata_puzzle/stellata24/row-2-col-4.png"></a-img>
+            <a-img id="puzzle25" src="img/stellata_puzzle/stellata25/row-2-col-5.png"></a-img>
+            <a-img id="puzzle31" src="img/stellata_puzzle/stellata31/row-3-col-1.png"></a-img>
+            <a-img id="puzzle32" src="img/stellata_puzzle/stellata32/row-3-col-2.png"></a-img>
+            <a-img id="puzzle33" src="img/stellata_puzzle/stellata33/row-3-col-3.png"></a-img>
+            <a-img id="puzzle34" src="img/stellata_puzzle/stellata34/row-3-col-4.png"></a-img>
+            <a-img id="puzzle35" src="img/stellata_puzzle/stellata35/row-3-col-5.png"></a-img>
+            <a-img id="puzzle41" src="img/stellata_puzzle/stellata41/row-4-col-1.png"></a-img>
+            <a-img id="puzzle42" src="img/stellata_puzzle/stellata42/row-4-col-2.png"></a-img>
+            <a-img id="puzzle43" src="img/stellata_puzzle/stellata43/row-4-col-3.png"></a-img>
+            <a-img id="puzzle44" src="img/stellata_puzzle/stellata44/row-4-col-4.png"></a-img>
+            <a-img id="puzzle45" src="img/stellata_puzzle/stellata45/row-4-col-5.png"></a-img>
+            <a-img id="puzzle51" src="img/stellata_puzzle/stellata51/row-5-col-1.png"></a-img>
+            <a-img id="puzzle52" src="img/stellata_puzzle/stellata52/row-5-col-2.png"></a-img>
+            <a-img id="puzzle53" src="img/stellata_puzzle/stellata53/row-5-col-3.png"></a-img>
+            <a-img id="puzzle54" src="img/stellata_puzzle/stellata54/row-5-col-4.png"></a-img>
+            <a-img id="puzzle55" src="img/stellata_puzzle/stellata55/row-5-col-5.png"></a-img>
+
+            <!--QUADRI-->
+            <a-img id="quadro1" src="img/assenzio/degas.png"></a-img>
+            <a-img id="quadro2" src="img/carlo/carlo.png"></a-img>
+            <a-img id="quadro3" src="img/mangiapatate/mangiapatate.jpg"></a-img>
+            <a-img id="quadro4" src="img/persistenza/persistenza.jpg"></a-img>
+            <a-img id="quadro5" src="img/danza2/danza2.jpg"></a-img>
+            <a-img id="quadro6" src="img/topo/mice.jpg"></a-img>
+
+
+
+            <!--FRECCIA-->
+            <a-img id="arrow" src="img/freccia1/freccia1.jpg"></a-img>
+
+            <!--CIELO-->
+            <a-img id="stelle" src="img/fuori/prova.jpg"></a-img>
+
+            <!--TERRENO-->
+            <a-img id="ground" src="img/terreno/terreno.jpg"></a-img>
+
+
+
+
+
+
+
+
+
+        <!--OGGETTI-->
+            <!--SOGGIORNO-->
+            <a-asset-item id="room" src="obj/soggiorno2/scene.gltf"></a-asset-item>
+
+            <!--CLESSIDRA-->
+            <a-asset-item id="hourglass" src="obj/clessidra/Hourglass.gltf"></a-asset-item>
+            <!--PALLA-->
+            <a-asset-item id="ball" src="obj/palla1/Basketball.gltf"></a-asset-item>
+            <!--TOPO-->
+            <a-asset-item id="mice" src="obj/mouse2/ComputerMouse.gltf"></a-asset-item>
+            <!--VINO-->
+            <a-asset-item id="wine" src="obj/vino1/Bottle_Of_Wine_10.gltf"></a-asset-item>
+            <!--VIOLINO-->
+            <a-asset-item id="violine" src="obj/violino1/Violin.gltf"></a-asset-item>
+            <!--CAFFE-->
+            <a-asset-item id="tazza" src="obj/caffe/Coffee Cup_final.gltf"></a-asset-item>
+
+            <!--PORTA-->
+            <a-asset-item id="porta2" src="obj/porta3/Door.gltf"></a-asset-item>
+
+
+
+            
+        
+        
+        </a-assets>
+
+    <!--GIOCATORE-->
+        <!--CAMERA 3 + CURSORE-->
+        <a-entity id="cameraRig" position="0 0 0">
+            <a-camera look-controls wasd-controls position="0 0 0">
+                <a-gui-cursor id="cursor" design="ring" cursor="fuse: true; fuseTimeout: 1000; maxDistance=: 100"
+                    position="0 0 -1" geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                    material="color: #121212; shader: flat" raycaster="objects: .clickable">
+                </a-gui-cursor> <!-- /cursor -->
+
+               
+
+            </a-camera> <!-- /camera -->
+        </a-entity>
+
+    <!--FUORI STANZA-->
+    <a-plane id="fuori" color="#121212" position="0 -2.587 0" rotation="-90 0 0" scale="100.000 100.000 1" ></a-plane>
+
+    <a-sky src="#stelle" ></a-sky>
+
+    <a-text text="value: Congratulations, you passed the level!\n\nNew levels will be added soon, don't miss them!; color: #c11b11" position="4.936 0.504 14.711" scale="2.480 2.080 1" rotation="0 180 0" ></a-text>
+
+
+    <!--STANZA: ELEMENTI NON CLICCABILI-->
+
+
+        <!--SOGGIORNO-->
+        <a-entity id="casa" gltf-model="#room" scale="0.00001 0.00001 0.00001" position="-0.540 -3.000 4.920" rotation="0 0 0"></a-entity>
+
+        <!--PORTA-->
+        <a-entity id="door2" gltf-model="#porta2" scale="0.010 0.0115 0.010" position="-0.597 -2.059 -5.167" rotation="0 0 0" onclick="vaiFuori()" ></a-entity>
+
+        <!--TETTO-->
+        <a-plane id="tettoSopra" color="#5e5a5c" scale="9.350 10.700 1" position="-1.756 1.657 -0.331" rotation="90 0 0"></a-plane>
+        <!--PARETE DIETRO-->
+        <a-plane id="pareteDietro" color="#5e5a5c" scale="9.830 4.080 1" position="2.691 -0.385 -0.236" rotation="0 -90 0"></a-plane>
+        <!--PARETE DESTRA-->
+        <a-plane id="pareteDestra1" color="#5e5a5c" scale="5.410 4.080 1" position="-4.074 -0.385 -5.119" rotation="0 0 0"></a-plane>
+        <a-plane id="pareteDestra2" color="#5e5a5c" scale="3.050 4.080 1" position="1.684 -0.409 -5.119" rotation="0 0 0"></a-plane>
+        <!--SPORTELLO TVI-->
+        <a-box id="sportelloTelevisione" color="#e8e8e8" scale="0.070 1.050 1.260" position="-5.038 -1.284 3.507" ></a-box>
+
+        <a-box id="manigliaTelevisione" color="#787878" scale="0.070 0.640 0.060" position="-4.968 -1.271 3.015"></a-box>
+        <!--FOGLIO-->
+        <a-plane id="foglio" color="#121212"  position="-1.968 -1.414 -0.080" scale="1.430 1.710 0.870" rotation="-90 0 0" ></a-plane>
+        <a-text id="equazione" position="-1.949 -1.395 0.654" rotation="-90.000 90.000 0" scale="0.600 1 1" text="value: S + C -Q + T+ G + P =  F\n\n -P + Q + R - H -J -K = T + G\n\n R = H + J+ K" ></a-text>
+
+
+        <!--LETTERE FRECCIE-->
+        <a-text id="letteraFreccia0" position="2.255 1.370 4.280" rotation="0 180 0" scale="0.830 0.870 1" text="value: S + C; color: #ffffff"></a-text>
+
+        <a-text id="letteraFreccia1" position="2.255 0.131 4.280" rotation="0 180 0" scale="0.830 0.870 1"  text="value: M + N; color: #ffffff"></a-text>
+
+        <a-text id="letteraFreccia2" position="2.255 -1.084 4.280" rotation="0 180 0" scale="0.830 0.870 1" text="value: -P + Q; color: #ffffff"></a-text>
+
+        <!--LETTERE TETTO-->
+        <a-image id="suggerimentoTetto0" src="#arrow" position="0 1.638 0.209" scale="1 1 1" rotation="-90 -90 0" ></a-image>
+        <a-image id="suggerimentoTetto1" src="#arrow" position="0 1.638 1.232" scale="1 1 1" rotation="-90 0 0"></a-image>
+        <a-image id="suggerimentoTetto2" src="#arrow" position="0 1.638 -1.926" scale="1 1 1" rotation="-90 90 0"></a-image>
+        <a-image id="suggerimentoTetto3" src="#arrow" position="0 1.638 -0.854" scale="1 1 1" rotation="-90 180 0"></a-image>
+
+        <a-text id="letteraTetto0" position="-0.647 1.628 1.062" rotation="90.000 -90.000 0" scale="0.600 1 1" text="value: -H - J; color: #ffffff"></a-text>
+
+        <a-text id="letteraTetto1" position="-0.647 1.628 0.182" rotation="90.000 -90.000 0" scale="0.600 1 1" text="value: F; color: #ffffff"></a-text>
+
+        <a-text id="letteraTetto2" position="-0.647 1.628 -0.913" rotation="90.000 -90.000 0" scale="0.600 1 1" text="value: T + G; color: #ffffff"></a-text>
+
+        <a-text id="letteraTetto3" position="-0.647 1.628 -1.832" rotation="90.000 -90.000 0" scale="0.600 1 1" text="value: P; color: #ffffff"></a-text>
+
+        <!--DIETRO I CANALI-->
+        <a-plane id="dietroCanale" color="#242424" position="-5.930 -0.518 0.310" rotation="0 90 0" scale="3.112 0.340 1"></a-plane>
+        <a-plane id="sinistraCanale" color="#242424" position="-6.089 -0.551 1.875" rotation="0 0 0" scale="0.310 0.380 1"></a-plane>
+        <a-plane id="destraCanale" color="#242424" position="-6.159 -0.518 -1.181" rotation="0 180 0" scale="0.460 0.380 1"></a-plane>
+
+        <!--DIETRO OGGETTI-->
+        <a-text id="1Oggetto" position="-6.247 1.108 4.445" rotation="0 90 0" scale="4 4 1" text="value: 1; color: #ffffff"></a-text>
+        <a-text id="1Pallino" position="-6.259 1.350 4.046" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <a-text id="2Oggetto" position="-6.247 1.108 3.749" rotation="0 90 0" scale="4 4 1" text="value: 2; color: #ffffff"></a-text>
+        <a-text id="2Pallino" position="-6.259 1.350 3.170" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <a-text id="3Oggetto" position="-6.247 1.108 3.010" rotation="0 90 0" scale="4 4 1" text="value: 3; color: #ffffff"></a-text>
+        <a-text id="3Pallino" position="-6.259 1.350 2.484" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <a-text id="4Oggetto" position="-6.247 1.108 -1.590" rotation="0 90 0" scale="4 4 1" text="value: 4; color: #ffffff"></a-text>
+        <a-text id="4Pallino" position="-6.259 1.350 -2.119" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <a-text id="5Oggetto" position="-6.247 1.108 -2.468" rotation="0 90 0" scale="4 4 1" text="value: 5; color: #ffffff"></a-text>
+        <a-text id="5Pallino" position="-6.259 1.350 -3.038" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <a-text id="6Oggetto" position="-6.247 1.108 -3.368" rotation="0 90 0" scale="4 4 1" text="value: 6; color: #ffffff"></a-text>
+        <a-text id="6Pallino" position="-6.259 1.350 -3.947" rotation="0 90 0" scale="1 1 1" text="value: o; color: #ffffff"></a-text>
+
+        <!--SOLUZIONE TV-->
+        <a-text id="soluzioneTV" position="2.252 -1.438 -2.022" rotation="0 180 0" scale="1.420 2.800 1" text="value: 1-6-4-5-3-2; color: #121212"> </a-text>
+
+
+
+    <!--TELETRASPORTO-->
+        <a-image id="passo1" src="#teleport" scale="1 1 1" position="0.133 -2.088 0.100" rotation="90 -90 0"class="clickable"></a-image>
+
+        <a-image id="passo2" src="#teleport" scale="1 1 1" position="-2.231 -2.088 2.266" rotation="-90 0 0" class="clickable">
+        </a-image>
+
+        <a-image id="passo3" src="#teleport" scale="1 1 1" position="-4.231 -2.088 0.100" rotation="90 90 0" class="clickable">
+        </a-image>
+
+        <a-image id="passo4" src="#teleport" scale="1 1 1" position="-2.231 -2.088 -3.905" rotation="90 0 0" class="clickable"> </a-image>
+
+    <!-- 1-PRIMO ENIGMA: -->
+        <!--TELEVISIONE-->
+        <a-plane id="tv" position="-5.937 0.347 0.302" scale="2.900 1.360 1" rotation="0 90 0"></a-plane>
+        <a-plane  color="#242424" position="-5.937 1.147 0.302" scale="2.900 0.240 1" rotation="0 90 0"></a-plane> 
+        <a-entity id="sopraTelevisione" position="-5.967 1.147 1.51" rotation="0 90 0" scale="0.50 0.860 1" text="value: ; color:#ffffff; width: 6.230; xOffset: 2.600; yOffset: 7.390; zOffset: 0.041" ></a-entity>
+        <!--CANALI-->
+        <a-plane id="canali1" onclick="telecomando(1)" ></a-plane>
+        <a-plane id="canali2" onclick="telecomando(2)"></a-plane>
+        <a-plane id="canali3" onclick="telecomando(3)"></a-plane>
+        <a-plane id="canali4" onclick="telecomando(4)"></a-plane>
+        <a-plane id="canali5" onclick="telecomando(5)"></a-plane>
+        <a-plane id="canali6" onclick="telecomando(6)"></a-plane>
+
+        <!--NUMERI TASTI-->
+        <a-entity id="numeroTasto1"></a-entity>
+        <a-entity id="numeroTasto2"></a-entity>
+        <a-entity id="numeroTasto3"></a-entity>
+        <a-entity id="numeroTasto4"></a-entity>
+        <a-entity id="numeroTasto5"></a-entity>
+        <a-entity id="numeroTasto6"></a-entity>
+
+        <!--OGGETTI SULLA MENSOLA VERI-->
+        <a-entity id="clessidraVero" gltf-model="#hourglass" scale="0.000001 0.000001 0.000001" position="-4.589 0.620 3.407" rotation="0 0 0" visible="false" onclick="ordina(id, 0)" ></a-entity>
+
+        <a-entity id="caffeVero" gltf-model="#tazza" scale="0.05 0.05 0.05" position="-5.930 0.616 3.442 " rotation="0 90 0" visible="false" onclick="ordina(id, 1)"></a-entity>
+
+        <a-entity id="mouseVero" gltf-model="#mice" scale="0.05 0.05 0.05" position="-5.796 0.776 2.588" rotation="-90 0 -90" visible="false" onclick="ordina(id, 2)"></a-entity>
+
+        <a-entity id="pallaVero" gltf-model="#ball" scale="1 1 1" position="-6.015 0.746 -1.971" rotation="0 0 0" visible="false" onclick="ordina(id, 3)"></a-entity>
+
+        <a-entity id="vinoVero" gltf-model="#wine" scale="0.05 0.05 0.05" position="-5.907 0.620 -2.926" rotation="0 0 0" visible="false" onclick="ordina(id, 4)"></a-entity>
+
+
+        <a-entity id="violinoVero" gltf-model="#violine" scale="0.000001 0.000001 0.000001" position="-6.015 0.928 -3.281" rotation="90 0 -90" visible="false" onclick="ordina(id, 5)"></a-entity>
+
+        <!--OGGETTI FINTI-->
+        <a-entity id="clessidraFinto" gltf-model="#hourglass" scale="0.000001 0.000001 0.000001" position="-2.308 -2.078 2.992"
+            rotation="0 0 0" class="clickable" onclick="spostaOggetto('clessidra')"></a-entity>
+        
+        <a-entity id="caffeFinto" gltf-model="#tazza" scale="0.05 0.05 0.05" position="2.061 -1.038 -4.074" rotation="0 90 0"
+            class="clickable" onclick="spostaOggetto('caffe')"></a-entity>
+        
+        <a-entity id="mouseFinto" gltf-model="#mice" scale="0.05 0.05 0.05" position="-5.598 -1.745 -2.478" rotation="-90 0 -90"
+            class="clickable" onclick="spostaOggetto('mouse')"></a-entity>
+        
+        <a-entity id="pallaFinto" gltf-model="#ball" scale="1 1 1" position="0.056 -2.002 3.501" rotation="0 0 0"
+            class="clickable" onclick="spostaOggetto('palla')"></a-entity>
+        
+        <a-entity id="vinoFinto" gltf-model="#wine" scale="0.05 0.05 0.05" position="2.270 -2.055 -4.616" rotation="0 0 0"
+            class="clickable" onclick="spostaOggetto('vino')"></a-entity>
+        
+        
+        <a-entity id="violinoFinto" gltf-model="#violine" scale="0.000001 0.000001 0.000001" position="1.602 -1.768 2.438"
+            rotation="90 0 0" onclick="spostaOggetto('violino')"></a-entity>
+
+        
+
+    <!-- 2-SECONDO ENIGMA: OROLOGIO -->
+        <!-- FRECCE -->
+        <a-image id="freccia0" src="#arrow" onclick="gira(0)" position="2.040 0.927 4.274" rotation="0 0 -90" scale="0.720 0.730 1" class="clickable"></a-image>
+
+        <a-image id="freccia1" src="#arrow" onclick="gira(1)" position="2.019 -0.304 4.275" rotation="0 0 -90" scale="0.720 0.730 1" class="clickable">
+        </a-image>
+    
+        <a-image id="freccia2" src="#arrow" onclick="gira(2)" position="1.995 -1.524 4.275" rotation="0 0 -90" scale="0.720 0.730 1" class="clickable">
+        </a-image>
+
+    <!-- 3-TERZO ENIGMA: -->
+        
+    </a-scene>
+
+    <script>
+
+    /*DICHIARAZIONI*/
+
+        //PERSONAGGIO
+        var io=document.querySelector
+        ('#cameraRig');
+
+        var sfasamento = 0;
+
+        //STANZA: NON CLICCABILI
+        sceneEl=document.querySelector('a-scene');
+
+        //TELETRASPORTO
+        var passi= new Array();
+        for (var a = 1; a <= 4; a++)
+        {
+            passi[a]=document.querySelector('#passo' + a);
+        }
+
+       
+
+        //1-PRIMO ENIGMA: TELECOMANDO
+        var televisioneEl=document.querySelector('#tv');
+        var sopratvEl = document.querySelector('#sopraTelevisione');
+
+        var tempCanale;
+        var spostaCanale=0;
+
+
+        var canali = new Array();
+        var numeroTasto= new Array();
+
+        //1-PRIMO ENIGMA: OGGETTI
+        
+
+        var oggettoEl;
+        var tmpSelezionoEl;
+        var selezionaOggetto=0;
+        var tmpNumObj;
+
+        var posizioneClessidra=[3.595, 2.788, 2.099, -2.727, -3.609, -4.242]
+        var posizioneCaffe=[4.158, 3.295, 2.630, -2.021, -2.898, -3.607]
+        var posizioneMouse = [4.174, 3.339, 2.567, -2.026, -2.891, -3.647]
+        var posizionePalla = [4.284, 3.429, 2.666, -2.000, -2.931, -3.662]
+        var posizioneVino=[4.259, 3.362, 2.550, -1.950, -2.890, -3.672]
+        var posizioneViolino=[4.639, 3.713, 2.967, -1.621, -2.540, -3.270]
+
+        var posizioneOggetti =[];
+        posizioneOggetti.push(posizioneClessidra);
+        posizioneOggetti.push(posizioneCaffe);
+        posizioneOggetti.push(posizioneMouse);
+        posizioneOggetti.push(posizionePalla);
+        posizioneOggetti.push(posizioneVino);
+        posizioneOggetti.push(posizioneViolino);
+
+        var ordineOggetti = new Array();
+
+        var tmpOrdine;
+        var selezionaOrdine;
+
+        for(var j=0;j<6; j++)
+        {
+            ordineOggetti[j]=j;
+        }
+
+        //1-PRIMO ENIGMA: vettore per controllare se ho vinto
+        var controllaOggetti = [2, 4, 1 , 5, 0, 3]; //VINO, CAFFE, VIOLINO, CLESSIDRA, PALLA, MOUSE
+
+        //1-PRIMO ENIGMA: SPORTELLO
+        var sportelloTelevisioneEl= document.querySelector('#sportelloTelevisione');
+        var manigliaTelevisioneEl = document.querySelector('#manigliaTelevisione');
+       
+
+         
+
+        
+
+
+
+
+
+
+       
+
+        //2-SECONDO ENIGMA: FRECCE
+        var frecce = new Array();
+        for(var g=0;g<3;g++)
+        {
+            frecce[g]=document.querySelector('#freccia' + g);
+        }
+        var posizioneFreccia= new Array();
+        for(var h=0; h<3;h++)
+        {
+             posizioneFreccia[h] = -90;
+        }
+        
+        var numTurn = 0;
+        
+
+        //3-TERZO ENIGMA: PUZZLE
+        var puzzle =  new Array(7);
+        for (var d = 1; d <= 5; d++) 
+            {
+                puzzle[d] = new Array(7);
+            }
+        var selezionoPuzzle=0;
+        var tempPImage;
+        var scambiaPuzzle;
+        var vintoPuzzle = 1;
+        var planeOpen = document.querySelector('#planeOpen');
+        var tempPuzzle;
+
+
+        //3- ENIGMA: FINTI PEZZI
+        var pezziEl= [];
+        var tmpPfinto;
+            for (var l = 1; l <= 5; l++) {
+                pezziEl[l] = new Array(7);
+            }
+
+        var confrontaPezzo = new Array(7);
+        for(var q=1; q<=5; q++)
+        {
+            confrontaPezzo[q] = new Array(7);
+        }
+        
+        for(var r=1;r<=5; r++)
+        {
+            for(var s=1; s<=5; s++)
+            {
+                confrontaPezzo[r][s] = 'pezzo' + r + s;
+            }
+        }
+
+        //3- enigma: randomù
+        var v=0;
+        var assegnaSrc;
+        var numScelto;
+
+        var inizioVett=0;
+        var fineVett = 24;
+
+        var puzzVett = new Array();
+       
+
+        for(var t=1;t<=5;t++)
+        {
+            for(var u=1; u<=5; u++)
+            {
+                var stringaNum = "" + t + "" + u;
+                var trasformaNum = parseInt (stringaNum);
+                puzzVett[v] = trasformaNum;
+                v++;
+            }
+            
+        }
+        
+
+
+
+
+        
+
+
+
+    /*TELETRASPORTO*/
+
+    passi[1].addEventListener('click', function (evt) {
+        io.setAttribute('position', { x: 0.133, y: sfasamento, z: 0.100 });
+        (document.querySelector('#violinoFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#clessidraFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#pallaFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#caffeFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#vinoFinto')).setAttribute('class', 'not-clickable');
+
+    });
+    passi[2].addEventListener('click', function (evt) {
+        io.setAttribute('position', { x: -2.231, y: sfasamento, z: 2.266 });
+        (document.querySelector('#violinoFinto')).setAttribute('class', 'clickable');
+        (document.querySelector('#clessidraFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#pallaFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#caffeFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#vinoFinto')).setAttribute('class', 'not-clickable');
+
+    });
+    passi[3].addEventListener('click', function (evt) {
+        io.setAttribute('position', { x: -4.231, y: sfasamento, z: 0.100 });
+        (document.querySelector('#violinoFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#clessidraFinto')).setAttribute('class', 'clickable');
+        (document.querySelector('#pallaFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#caffeFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#vinoFinto')).setAttribute('class', 'not-clickable');
+    });
+    passi[4].addEventListener('click', function (evt) {
+        io.setAttribute('position', { x: -2.231, y: sfasamento, z: -3.905 });
+        (document.querySelector('#violinoFinto')).setAttribute('class', 'not-clickable');
+        (document.querySelector('#clessidraFinto')).setAttribute('class', 'clickable');
+        (document.querySelector('#pallaFinto')).setAttribute('class', 'clickable');
+        (document.querySelector('#caffeFinto')).setAttribute('class', 'clickable');
+        (document.querySelector('#vinoFinto')).setAttribute('class', 'clickable');
+    });
+
+
+    /*1-PRIMO ENIGMA*/
+        //SPOSTA OGGETTI
+        function spostaOggetto(oggettoName)
+        {
+            (document.querySelector('#' + oggettoName + 'Finto')).setAttribute('visible', 'false');
+            (document.querySelector('#' + oggettoName + 'Finto')).setAttribute('class', 'not-clickable');
+
+            (document.querySelector('#' + oggettoName + 'Vero')).setAttribute('visible', 'true');
+            (document.querySelector('#' + oggettoName + 'Vero')).setAttribute('class', 'clickable');
+
+        }
+
+
+
+        //TELEVISIONE
+        function telecomando(indiceTv)
+        {
+            televisioneEl.setAttribute('src', '#quadro' + indiceTv);
+            
+            switch(indiceTv)
+            {
+                case 1:nomeQuadro =": L'absinthe, Edgar Degas"
+                        break;
+                case 2: nomeQuadro =": Charlemagne, A. Dürer"
+                        break;
+                case 3: nomeQuadro =": The Potato Eaters, Vincent van Gogh"
+                        break;
+                case 4: nomeQuadro=": The Persistence of Memory, S. Dali'"
+                        break;
+                case 5: nomeQuadro=": Dance, Henri Matisse"
+                        break;
+                case 6: nomeQuadro=": Mice's dance, Ferdinand von Kessels"
+                        break;
+            }
+
+
+            sopratvEl.setAttribute('text', 'value: Channel ' + indiceTv + nomeQuadro);
+            
+        }
+
+
+         for (var i = 1; i <= 6; i++) {
+                tempCanale = document.querySelector('#canali' + i);
+                tempCanale.setAttribute('position', { x: -5.908, y: -0.502, z: 1.490 + spostaCanale });
+                tempCanale.setAttribute('scale', { x: 0.449, y: 0.340, z: 1 });
+                tempCanale.setAttribute('rotation', { x: 0, y: 90, z: 0 });
+                tempCanale.setAttribute('class', 'clickable');
+                tempCanale.setAttribute('color', '#242424');
+                
+                canali[i] = tempCanale;
+
+                //testo
+                numeroTasto= document.querySelector('#numeroTasto' + i);
+                numeroTasto.setAttribute('position', {x: -5.873, y: -0.495, z: -1.438 + spostaCanale});
+                numeroTasto.setAttribute('rotation', {x: 0, y: 90, z: 0});
+                numeroTasto.setAttribute('text', 'width: 6.020; value: ' + i);
+                spostaCanale -= (1.490 - 1.011);
+
+            }
+
+
+
+
+
+            //ORDINA OGGETTI
+
+            //CONTROLLA ORDINE
+            function controllaOrdine()
+            {
+                var flagOrdine=0;
+                for(var k=0;k<6 && flagOrdine==0;k++)
+                {
+                    if(ordineOggetti[k]!=controllaOggetti[k])
+                    {
+                        flagOrdine=1;
+                    }
+                }
+
+                if(flagOrdine==0)
+                {
+                    sportelloTelevisioneEl.setAttribute('position', {x: -4.476, y: -1.320, z: 4.184});
+                    sportelloTelevisioneEl.setAttribute('rotation', {x: 0, y: 90, z:0});
+
+                    manigliaTelevisioneEl.setAttribute('visible', 'false');
+
+                    apparePezzi();
+                }
+                               
+            }
+
+
+
+            //OGGETTI IN MENSOLA
+            function ordina(identificativo, numOggetto)
+            {
+                oggettoEl=document.querySelector('#' + identificativo);
+                if(selezionaOggetto==0)
+                {
+                    tmpSelezionoEl=oggettoEl;
+                    tmpNumObj= numOggetto;
+
+                    tmpSelezionoEl.object3D.position.x += 0.5;
+
+                    selezionaOrdine = numOggetto;
+
+                    selezionaOggetto++;
+
+                }
+                else
+                {
+                    
+
+                    tmpSelezionoEl.object3D.position.x -= 0.5;
+                    tmpSelezionoEl.object3D.position.z = posizioneOggetti[tmpNumObj][ordineOggetti[numOggetto]];
+                    oggettoEl.object3D.position.z = posizioneOggetti[numOggetto][ordineOggetti[tmpNumObj]];
+
+                    //SCAMBIA GLI ORDINI
+                    tmpOrdine = ordineOggetti[selezionaOrdine];
+                    ordineOggetti[selezionaOrdine] = ordineOggetti[numOggetto];
+                    ordineOggetti[numOggetto] = tmpOrdine;
+
+                    selezionaOggetto=0;
+
+                    //CONTROLLO SE VINCO
+                    controllaOrdine();
+                }
+            }
+
+
+
+    /*2-SECONDO ENIGMA*/
+            //FRECCE
+             function gira(numTurn){
+                //QUANDO CLICCA FRECCIA RUOTA DI 90 GRADI
+                frecce[numTurn].setAttribute('rotation', { x: 0, y: 0, z: posizioneFreccia[numTurn] });
+                if(posizioneFreccia[numTurn]==180)
+                {
+                    posizioneFreccia[numTurn]=-90;
+                }
+                else
+                {
+                    posizioneFreccia[numTurn] = posizioneFreccia[numTurn] + 90;
+                }
+                frecce[numTurn].setAttribute('rotation', {x: 0, y: 0, z: posizioneFreccia[numTurn]});
+                
+                if((numTurn==2 || numTurn==0 ) && posizioneFreccia[2]==180 && posizioneFreccia[0]==90)
+                {
+                    frecce[0].setAttribute('position', {x: 2.418, y: 0.927, z: 4.016});
+                    frecce[0].setAttribute('rotation', { x: 0, y: -90, z: 90 });
+                    frecce[0].setAttribute('class', 'not-clickable');
+
+                    frecce[1].setAttribute('position', { x: 2.418, y: -0.320, z: 4.016 });
+                    frecce[1].setAttribute('rotation', { x: 0, y: -90, z: 90 });
+                    frecce[1].setAttribute('class', 'not-clickable');
+
+                    frecce[2].setAttribute('position', { x: 2.418, y: -1.572, z: 4.016 });
+                    frecce[2].setAttribute('rotation', { x: 0, y: -90, z: 180 });
+                    frecce[2].setAttribute('class', 'not-clickable');
+
+                    attivaPezzi();
+
+                }
+
+        
+
+               
+                       
+                    }
+                   
+                    
+            
+
+
+
+    /*3-TERZO ENIGMA*/
+        //PUZZLE VERO
+        for(var b=1; b <= 5; b++)
+        {
+            for (var c = 1; c <= 5; c++)
+            {  
+                
+                tempPuzzle= document.createElement('a-plane');
+                sceneEl.appendChild(tempPuzzle);
+
+                assegnaSrc = risorsaCasuale();
+                
+                tempPuzzle.setAttribute('src', '#puzzle' + assegnaSrc);
+                tempPuzzle.setAttribute('id', 'parte' + b + c);
+                tempPuzzle.setAttribute('position', {x: (c/4) - 3, y: 0.5- (b/4), z: -5});
+                tempPuzzle.setAttribute('scale', {x:0.25, y:0.25, z:0.25});
+               if((b==2 && c==4)|| ((b==4)&&(c==1||c==2||c==3))|| (b==5&&(c!=3)))
+                {
+                    tempPuzzle.setAttribute('class', 'clickable')
+                }
+               else
+                {
+                    tempPuzzle.setAttribute('visible', 'false');
+                }
+                puzzle[b][c] = tempPuzzle;
+
+                
+                tempPuzzle.addEventListener('click', function(event){
+
+                    if (selezionoPuzzle == 0)
+                    {
+                
+                    tempPImage = this.getAttribute('src');
+                    this.setAttribute('visible', 'false');
+                    scambiaPuzzle= this;
+                    selezionoPuzzle++;
+                    }
+
+                    else
+                    {
+                        scambiaPuzzle.setAttribute('src', ''+this.getAttribute('src'));
+                       this.setAttribute('src', tempPImage);
+                        scambiaPuzzle.setAttribute('visible', 'true');
+                        selezionoPuzzle = 0;
+
+                        
+                        controllaVittoria();
+                    }
+                    
+                });
+
+                
+                
+            }
+
+            
+        }
+
+        //PUZZLE VITTORIA
+
+      function controllaVittoria()
+        {
+            vintoPuzzle=1;
+            for (var e = 1; e <= 5 && vintoPuzzle == 1; e++) {
+              for (var f = 1; f <= 5 && vintoPuzzle == 1; f++) {
+                  var confrontaPuzzle = '#puzzle' + e + f;
+                  
+                  /*var srcPuzzle= puzzle[e][f];
+                 */
+                  if ((puzzle[e][f].getAttribute('src'))!= confrontaPuzzle) {
+                      vintoPuzzle = 0;
+                  }
+              }
+          }
+
+          if (vintoPuzzle == 1) {
+                (document.querySelector('#door2')).setAttribute('rotation', {x: 0, y: 10, z:0});
+                (document.querySelector('#door2')).setAttribute('class', 'clickable');
+          }
+        }
+
+        
+
+         
+
+
+
+
+        //PUZZLE FINTO
+        for(var m=1;m<=5; m++)
+        {
+            for(n=1;n<=5;n++)
+            {
+                
+                tmpPfinto=  document.createElement('a-box');
+                if ((m == 2) && (n == 2 || n == 3)||((m == 2 && n == 4) ||  (m==3 && n==5) || ((m == 4) && (n == 1 || n == 2||n==3)) || (m == 5)))
+                {
+                    tmpPfinto.setAttribute('visible', 'false');
+                }
+                else
+                {
+                    tmpPfinto.setAttribute('class', 'clickable');
+                }
+                tmpPfinto.setAttribute('src', '#puzzle' + m + n);
+                tmpPfinto.setAttribute('id', 'pezzo' + m + n);
+                tmpPfinto.setAttribute('scale', { x: 0.010, y: 0.25, z: 0.25 });
+
+            tmpPfinto.addEventListener('click', function(evt){
+
+                this.setAttribute('visible', 'false');
+                this.setAttribute('class', 'not-clickable');
+                
+                
+                for(var o=1; o<=5; o++)
+                {
+                    for(var p=1;p<=5;p++)
+                    {
+                         
+                        
+                        if(confrontaPezzo[o][p]== (this.getAttribute('id')))
+                        {
+                            
+                            (puzzle[o][p]).setAttribute('visible', 'true');
+                            (puzzle[o][p]).setAttribute('class', 'clickable');
+                        }
+                    }
+                }
+
+                    
+                });
+                sceneEl.appendChild(tmpPfinto);
+
+
+                pezziEl[m][n] = tmpPfinto;
+            }
+
+             
+        }
+
+
+        //POSIZIONA PUZZLE FINTO
+        pezziEl[1][1].setAttribute('position', { x: 1.108, y: -2.042, z: 0 });
+
+        pezziEl[1][2].setAttribute('position', { x: 0.216, y: -1.089, z: 3.679 });
+
+        pezziEl[1][3].setAttribute('position', { x: 1.774, y: -1.014, z: 0 });
+        
+        pezziEl[1][4].setAttribute('position', { x: 1.065, y: -1.047, z: -3.323 });
+                pezziEl[1][4].setAttribute('rotation', { x: 0, y: 0, z: 90 });
+
+
+            pezziEl[1][5].setAttribute('position', { x: -5.514, y: -1.113, z: -2.525 });
+
+                pezziEl[2][1].setAttribute('position', { x: -5.643, y: -1.753, z: -3.364 });
+
+                    pezziEl[2][2].setAttribute('position', { x: -5.652, y: -1.130, z: 3.613 });
+
+                    pezziEl[2][3].setAttribute('position', { x: -5.279, y: -1.592, z: 3.762 });
+
+
+                        pezziEl[2][5].setAttribute('position', { x: -0.050, y: 1.633, z: -3.319 });
+                        pezziEl[2][5].setAttribute('rotation', { x: 0, y: 0, z: 90 });
+
+    pezziEl[3][1].setAttribute('position', { x: -2.809, y: -2.106, z: 3.267 }); 
+    pezziEl[3][1].setAttribute('rotation', { x: 0, y: 90, z: 0 });
+
+        pezziEl[3][2].setAttribute('position', { x: -1.173, y: -1.008, z: 3.941});
+                pezziEl[3][2].setAttribute('rotation', { x: 0, y: 90, z: 0 });
+
+                pezziEl[3][3].setAttribute('position', { x: 1.525, y: 1.145, z: 4.505 });
+
+                    pezziEl[3][4].setAttribute('position', { x: -2.641, y: -1.405, z: 1.022 });
+    pezziEl[3][4].setAttribute('rotation', { x: 0, y: 0, z: 90 });
+
+    pezziEl[3][5].setAttribute('position', { x: 1.973, y: 0.908, z: 4.610 });
+        pezziEl[3][5].setAttribute('rotation', { x: 0, y: 90, z: 0 });
+
+    pezziEl[4][2].setAttribute('position', { x: -0.501, y: -2.062, z: -3.991 });
+        pezziEl[4][2].setAttribute('rotation', { x: 0, y: 0, z: 90 });
+
+            pezziEl[4][4].setAttribute('position', { x: -6.120, y: -0.467, z: 2.708});
+
+                pezziEl[4][5].setAttribute('position', { x: 2.612, y: 1.129, z: -2.861 });
+
+    pezziEl[5][3].setAttribute('position', { x: 1.917, y: -1.498, z: 4.408 });
+    pezziEl[5][3].setAttribute('rotation', { x: 0, y: 90, z: 00 });
+
+
+
+
+function apparePezzi()
+{
+    pezziEl[2][2].setAttribute('class', 'clickable'); 
+    pezziEl[2][3].setAttribute('class', 'clickable');
+
+    pezziEl[2][2].setAttribute('visible', 'true');
+    pezziEl[2][3].setAttribute('visible', 'true');
+
+}
+
+function attivaPezzi()
+{
+    pezziEl[3][5].setAttribute('class', 'clickable');
+    pezziEl[5][3].setAttribute('class', 'clickable');
+
+    pezziEl[3][5].setAttribute('visible', 'true');
+    pezziEl[5][3].setAttribute('visible', 'true');
+}
+
+
+
+// IMMAGINI PUZZLE CASUALI
+function risorsaCasuale()
+{
+     numScelto= Math.floor(Math.random() * (fineVett - inizioVett + 1));
+
+    var numTrovato = puzzVett[numScelto];
+     if(numScelto != fineVett)
+     {
+        puzzVett[numScelto]= puzzVett[fineVett];
+     }
+
+     fineVett--;
+
+        // console.log(numScelto + ' , ' + numTrovato);
+
+
+     return numTrovato;
+}
+
+
+function vaiFuori()
+{
+    io.setAttribute('position', {x: 0, y: sfasamento, z: 10});
+}
+/*
+        function spostaPezzi()
+        {
+             ( puzzle[rigaPezzo][colonnaPezzo]).setAttribute('visible', 'true');
+           ( puzzle[rigaPezzo][colonnaPezzo]).setAttribute('class', 'clickable');
+
+            (document.querySelector('#pezzo' + rigaPezzo + colonnaPezzo)).setAttribute('visible', 'false');
+
+            (document.querySelector('#pezzo' + rigaPezzo + colonnaPezzo)).setAttribute('class', 'not-clickable');
+            
+        }
+        */
+
+
+//VR MODE
+sceneEl.addEventListener('enter-vr', function(evt)
+{
+    io.setAttribute('position', {x: 0, y: -2, z: 0});
+    sfasamento = -2;
+})
+
+        
+    
+
+    
+
+    </script>
+
+
+
+</body>
+  </html>
